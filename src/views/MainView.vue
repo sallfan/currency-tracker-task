@@ -1,14 +1,15 @@
 <script setup lang="ts">
 import CurrencyList from '@/components/CurrencyList.vue'
 import CurrencyConverter from '@/components/CurrencyConverter.vue'
+import CurrencyChart from '@/components/CurrencyChart.vue'
 </script>
 
 <template>
   <main class="content">
     <CurrencyList class="list" />
     <aside class="actions">
-      <CurrencyConverter/>
-      <CurrencyConverter/>
+      <CurrencyConverter />
+      <CurrencyChart />
     </aside>
   </main>
 </template>
@@ -31,7 +32,7 @@ import CurrencyConverter from '@/components/CurrencyConverter.vue'
   display: flex;
   flex-direction: column;
   gap: 16px;
+  padding: 16px;
   width: 35%;
 }
-
 </style>
