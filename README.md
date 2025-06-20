@@ -75,6 +75,7 @@ VITE_API_BASE_URL=https://openexchangerates.org/api/
 production-сервер **_(http://localhost:4173)_**
 
 ```bash
+    npm run build
     npm run preview
 ```
 
