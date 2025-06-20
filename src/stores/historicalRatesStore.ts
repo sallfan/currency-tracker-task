@@ -88,6 +88,7 @@ export const useHistoricalRatesStore = defineStore('historicalRates', () => {
     currencyCode,
     historicalRates,
     isLoading,
+    isFailed,
     fetchHistoricalRates,
   }
 })

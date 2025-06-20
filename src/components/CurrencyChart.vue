@@ -66,7 +66,7 @@ const chartConfigs = computed(() => {
     </v-card-title>
 
     <main class="body">
-      <div v-if="currencyStore.isFailed" class="placeholder">Failed to get currencies data.</div>
+      <div v-if="historicalRatesStore.isFailed" class="placeholder">Failed to get currencies data.</div>
 
       <div
         v-else-if="historicalRatesStore.isLoading || currencyStore.isLoading"
