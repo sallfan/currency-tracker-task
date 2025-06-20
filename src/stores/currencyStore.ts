@@ -9,37 +9,37 @@ export interface Currency {
 }
 
 export const useCurrencyStore = defineStore('currency', () => {
-  const ratesBase = ref<string>();
-  const currencies = ref<Currency[]>([]);
-  const isLoading = ref<boolean>(false);
-  const isFailed = ref<boolean>(false);
+  const ratesBase = ref<string>()
+  const currencies = ref<Currency[]>([])
+  const isLoading = ref<boolean>(false)
+  const isFailed = ref<boolean>(false)
 
   async function fetchCurrencies() {
-      try {
-        isLoading.value = true
+    try {
+      isLoading.value = true
 
-        const [ratesData, namesData] = await Promise.all([getLatestRates(), getCurrencies()])
+      const [ratesData, namesData] = await Promise.all([getLatestRates(), getCurrencies()])
 
-        ratesBase.value = ratesData.base
+      ratesBase.value = ratesData.base
 
-        const rates = ratesData.rates
-        currencies.value = Object.entries(namesData)
-          .filter(([code, name]) => {
-            const rate = rates[code]
-            return rate != null && rate !== 0 && name != null && name !== ''
-          })
-          .map(([code, name]) => ({
-            code,
-            name,
-            rate: rates[code],
-          }))
+      const rates = ratesData.rates
+      currencies.value = Object.entries(namesData)
+        .filter(([code, name]) => {
+          const rate = rates[code]
+          return rate != null && rate !== 0 && name != null && name !== ''
+        })
+        .map(([code, name]) => ({
+          code,
+          name,
+          rate: rates[code],
+        }))
 
-        isLoading.value = false
-      } catch (error) {
-        console.error(error)
-        isFailed.value = true
-      }
+      isLoading.value = false
+    } catch (error) {
+      console.error(error)
+      isFailed.value = true
     }
+  }
 
   return {
     currencies,

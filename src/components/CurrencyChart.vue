@@ -63,10 +63,12 @@ const chartConfigs = computed(() => {
     </v-card-title>
 
     <main class="body">
-
       <div v-if="currencyStore.isFailed" class="placeholder">Failed to get currencies data.</div>
 
-      <div v-else-if="historicalRatesStore.isLoading || currencyStore.isLoading" class="loading-state">
+      <div
+        v-else-if="historicalRatesStore.isLoading || currencyStore.isLoading"
+        class="loading-state"
+      >
         <v-progress-circular indeterminate color="primary" size="48" />
         <span>Loading...</span>
       </div>
@@ -108,7 +110,7 @@ const chartConfigs = computed(() => {
   gap: 16px;
 }
 .chart {
-  height: 250px;
+  height: 300px;
 }
 .placeholder,
 .loading-state {
@@ -118,6 +120,6 @@ const chartConfigs = computed(() => {
   justify-content: center;
   font-size: 18px;
   color: #5555;
-  height: 250px;
+  height: 300px;
 }
 </style>

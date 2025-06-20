@@ -61,15 +61,13 @@ onMounted(update)
           density="compact"
           hide-details
         />
-        <v-btn class="update-btn" @click="update">
-          <v-icon start>mdi-refresh</v-icon>
-          Update
+        <v-btn class="update-btn" icon @click="update" variant="text">
+          <v-icon>mdi-refresh</v-icon>
         </v-btn>
       </div>
     </v-card-title>
 
     <main>
-
       <div v-if="currencyStore.isFailed" class="placeholder">Failed to get currencies data.</div>
 
       <div v-else-if="currencyStore.isLoading" class="placeholder">
@@ -79,7 +77,7 @@ onMounted(update)
 
       <div v-else-if="!pagedCurrencies.length" class="placeholder">Not Found</div>
 
-      <v-table v-else>
+      <v-table v-else class="table-container">
         <thead class="table-header">
           <tr>
             <th class="column-code">Code</th>
@@ -133,7 +131,6 @@ onMounted(update)
 
 .update-btn {
   color: #ffffff;
-  background-color: #235770;
 }
 
 .table-header {

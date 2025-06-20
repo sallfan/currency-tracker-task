@@ -95,7 +95,7 @@ watch(
       <div class="title">Converter</div>
       <div class="actions">
         <v-btn class="history-btn" icon @click="showHistoryModal = true" variant="text">
-          <v-icon size="32">mdi-history</v-icon>
+          <v-icon>mdi-history</v-icon>
         </v-btn>
       </div>
     </v-card-title>
@@ -122,7 +122,12 @@ watch(
           clearable
         />
 
-        <v-progress-circular v-if="isWaiting && !currencyStore.isFailed" indeterminate color="primary" size="40" />
+        <v-progress-circular
+          v-if="isWaiting && !currencyStore.isFailed"
+          indeterminate
+          color="primary"
+          size="40"
+        />
         <div style="width: 40px; height: 40px" v-else />
 
         <v-text-field v-model="formattedResult" width="200" label="Result" readonly hide-details />

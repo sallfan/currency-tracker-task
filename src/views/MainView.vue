@@ -32,7 +32,6 @@ import CurrencyChart from '@/components/CurrencyChart.vue'
   display: flex;
   flex-direction: column;
   gap: 16px;
-  padding: 16px;
   width: 35%;
 }
 </style>

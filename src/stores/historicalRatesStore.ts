@@ -14,26 +14,26 @@ interface CachedRates {
 }
 
 export const useHistoricalRatesStore = defineStore('historicalRates', () => {
-  const currencyCode = ref<string>();
-  const historicalRates = ref<HistoricalRate[]>([]);
-  const isLoading = ref<boolean>(false);
-  const isFailed = ref<boolean>(false);
+  const currencyCode = ref<string>()
+  const historicalRates = ref<HistoricalRate[]>([])
+  const isLoading = ref<boolean>(false)
+  const isFailed = ref<boolean>(false)
 
   const STORAGE_KEY = 'historicalRatesCache'
 
   function loadFromStorage(code: string): CachedRates | null {
     const cache = localStorage.getItem(STORAGE_KEY)
-    if (!cache) return null;
-    const parsed: Record<string, CachedRates> = JSON.parse(cache);
-    return parsed[code] ?? null;
+    if (!cache) return null
+    const parsed: Record<string, CachedRates> = JSON.parse(cache)
+    return parsed[code] ?? null
   }
 
   function saveToStorage(code: string, data: CachedRates) {
-    const cache = localStorage.getItem(STORAGE_KEY);
-    if (!cache) return null;
-    const parsed: Record<string, CachedRates> = JSON.parse(cache);
-    parsed[code] = data;
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(parsed));
+    const cache = localStorage.getItem(STORAGE_KEY)
+    if (!cache) return null
+    const parsed: Record<string, CachedRates> = JSON.parse(cache)
+    parsed[code] = data
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(parsed))
   }
 
   async function fetchHistoricalRates() {
@@ -57,7 +57,6 @@ export const useHistoricalRatesStore = defineStore('historicalRates', () => {
       const result: HistoricalRate[] = []
 
       for (const date of dates) {
-
         const data = await getHistoricalRates(date)
         ratesByDate[date] = data.rates[currencyCode.value] ?? NaN
 
@@ -71,7 +70,6 @@ export const useHistoricalRatesStore = defineStore('historicalRates', () => {
         timestamp: Date.now(),
         rates: ratesByDate,
       })
-
     } catch (error) {
       console.error(error)
       isFailed.value = true
