@@ -35,6 +35,9 @@ const chartConfigs = computed(() => {
       type: 'value',
       min: 'dataMin',
       max: 'dataMax',
+      axisLabel: {
+        show: false,
+      },
     },
     series: [
       {
@@ -54,11 +57,11 @@ const chartConfigs = computed(() => {
 </script>
 
 <template>
-  <v-card>
+  <v-card class="chart-container">
     <v-card-title class="header">
       <div class="title">Chart</div>
       <div class="actions">
-        <SelectCurrency v-model="selectedCurrencyCode" label="Show" :width="200" />
+        <SelectCurrency v-model="selectedCurrencyCode" label="Show" />
       </div>
     </v-card-title>
 
@@ -86,6 +89,10 @@ const chartConfigs = computed(() => {
 </template>
 
 <style scoped>
+.chart-container {
+  width: 100%;
+}
+
 .header {
   display: flex;
   justify-content: space-between;

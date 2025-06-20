@@ -102,13 +102,13 @@ watch(
 
     <main class="body">
       <div class="input-row">
-        <SelectCurrency v-model="fromCurrencyCode" label="From" :width="200" />
+        <SelectCurrency v-model="fromCurrencyCode" label="From" />
 
         <v-btn icon variant="plain" @click="swapCurrencies" class="swap-btn">
           <v-icon>mdi-swap-horizontal</v-icon>
         </v-btn>
 
-        <SelectCurrency v-model="toCurrencyCode" label="To" :width="200" />
+        <SelectCurrency v-model="toCurrencyCode" label="To" />
       </div>
 
       <div class="input-row">
@@ -183,7 +183,38 @@ watch(
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 16px;
+  gap: 8px;
   width: 100%;
+}
+
+@media (max-width: 768px) {
+  .actions {
+    gap: 8px;
+  }
+
+  .swap-btn {
+    min-width: 32px;
+    font-size: 20px;
+  }
+
+  .body {
+    padding: 8px;
+    gap: 12px;
+  }
+
+  .input-row {
+    gap: 8px;
+  }
+}
+
+@media (max-width: 425px) {
+  .body {
+    padding: 6px;
+    gap: 8px;
+  }
+
+  .input-row {
+    gap: 0;
+  }
 }
 </style>

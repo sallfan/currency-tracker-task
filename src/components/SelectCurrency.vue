@@ -41,8 +41,8 @@ watch(selectedCurrencyCode, (val) => {
 
 <template>
   <v-autocomplete
+    class="select-currency"
     v-model="selectedCurrencyCode"
-    :width="props.width || 200"
     :items="currencyCodes"
     :label="props.label || 'From'"
     clearable
@@ -52,3 +52,15 @@ watch(selectedCurrencyCode, (val) => {
     hide-details
   />
 </template>
+
+<style scoped>
+.select-currency {
+  min-width: 125px;
+}
+
+@media (min-width: 768px) and (max-width: 1439px) {
+  .select-currency {
+    min-width: 100px;
+  }
+}
+</style>

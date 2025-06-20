@@ -7,7 +7,7 @@ import searchCurrencies from '@/utils/searchCurrencies.ts'
 const currencyStore = useCurrencyStore()
 
 const page = ref<number>(1)
-const PER_PAGE = 8
+const PER_PAGE = 7
 
 const search = ref('')
 const sortBy = ref<SortOrder>('name-asc')
@@ -40,7 +40,12 @@ onMounted(update)
 <template>
   <v-card class="currency-list">
     <v-card-title class="header">
-      <h1 class="title">Currency Rates</h1>
+      <h1 class="title">
+        Currency Rates
+        <v-btn class="update-btn" icon @click="update" variant="text">
+          <v-icon>mdi-refresh</v-icon>
+        </v-btn>
+      </h1>
 
       <div class="actions">
         <v-text-field
@@ -61,9 +66,6 @@ onMounted(update)
           density="compact"
           hide-details
         />
-        <v-btn class="update-btn" icon @click="update" variant="text">
-          <v-icon>mdi-refresh</v-icon>
-        </v-btn>
       </div>
     </v-card-title>
 
@@ -71,7 +73,7 @@ onMounted(update)
       <div v-if="currencyStore.isFailed" class="placeholder">Failed to get currencies data.</div>
 
       <div v-else-if="currencyStore.isLoading" class="placeholder">
-        <v-progress-circular indeterminate color="primary" size="64" />
+        <v-progress-circular indeterminate color="primary" />
         Loading...
       </div>
 
@@ -107,30 +109,32 @@ onMounted(update)
 <style scoped>
 .header {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 12px;
   color: #ffffff;
   background-color: #598aa1;
   padding: 16px;
 }
 
 .title {
+  width: 100%;
+  display: flex;
+  align-items: center;
   font-size: 24px;
   font-weight: 900;
-  padding: 8px 16px;
-  border-radius: 25px;
 }
 
 .actions {
   display: flex;
-  flex: 1;
+  width: 100%;
   gap: 12px;
 }
 
 .update-btn {
   color: #ffffff;
+  margin-left: auto;
 }
 
 .table-header {
@@ -177,5 +181,71 @@ onMounted(update)
 
 .pagination {
   width: 75%;
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px;
+  }
+
+  .title {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    padding: 6px 12px;
+  }
+
+  .actions {
+    width: 100%;
+    gap: 8px;
+  }
+
+  .search-input,
+  .sort-select {
+    width: 100% !important;
+  }
+
+  .update-btn {
+    padding: 8px;
+    margin-left: auto;
+  }
+
+  .table-header {
+    font-size: 16px;
+  }
+  .table-container {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 425px) {
+  .title {
+    font-size: 18px;
+    padding: 4px 8px;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .update-btn {
+    height: 24px !important;
+    padding: 0;
+  }
+
+  .table-header {
+    font-size: 14px;
+  }
+
+  .table-container {
+    font-size: 12px;
+  }
+
+  .placeholder {
+    font-size: 14px;
+  }
 }
 </style>

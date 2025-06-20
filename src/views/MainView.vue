@@ -8,8 +8,8 @@ import CurrencyChart from '@/components/CurrencyChart.vue'
   <main class="content">
     <CurrencyList class="list" />
     <aside class="actions">
-      <CurrencyConverter />
       <CurrencyChart />
+      <CurrencyConverter />
     </aside>
   </main>
 </template>
@@ -33,5 +33,35 @@ import CurrencyChart from '@/components/CurrencyChart.vue'
   flex-direction: column;
   gap: 16px;
   width: 35%;
+}
+
+@media (max-width: 767px) {
+  .content {
+    flex-direction: column;
+    padding: 16px;
+    height: auto;
+  }
+
+  .list,
+  .actions {
+    width: 100%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1439px) {
+  .content {
+    flex-direction: column;
+    padding: 16px;
+    height: auto;
+  }
+
+  .list {
+    width: 100%;
+  }
+
+  .actions {
+    flex-direction: row;
+    width: 100%;
+  }
 }
 </style>
