@@ -1,39 +1,82 @@
-# test-task
+# Currency Tracker
 
-This template should help get you started developing with Vue 3 in Vite.
+---
 
-## Recommended IDE Setup
+## Описание проекта
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+**Currency Tracker** — это SPA-приложение для:
+- Отслеживания курсов различных валют
+- Конвертации валют в реальном времени
+- Просмотра динамики курса за последние 7 дней
 
-## Type Support for `.vue` Imports in TS
+---
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+## Описание решения
 
-## Customize configuration
+### Использованные технологии
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+- **Фреймворк:** Vue 3 (Composition API)
+- **Язык программирования:** TypeScript
+- **Управление состоянием приложения:** Pinia
+- **Библиотеки компонентов:** Vuetify и ECharts
 
-## Project Setup
+API с информацией о курсах валют: [Open Exchange Rates](https://openexchangerates.org/)
 
-```sh
-npm install
+---
+
+### Компоненты
+
+Приложение разбито на следующие компоненты:
+- **CurrencyList** — список валют с возможностью поиска и сортировки
+- **CurrencyConverter** — конвертер валют с историей конвертаций
+- **ConversionHistoryModal** — модальное окно с сохранённой историей конвертаций (Local Storage)
+- **CurrencyChart** — график динамики курса выбранной валюты за последние 7 дней (данные кэшируются)
+- **SelectCurrency** — UI-компонент для выбора валюты по коду
+
+---
+
+### Хранилища состояний
+
+Используются хранилища Pinia:
+- **currencyStore** — загружает список валют и хранит их текущие курсы.
+- **historyStore** — управляет историей конвертаций, сохраняет данные в Local Storage.
+- **historicalRatesStore** — загружает и кэширует исторические данные курсов валют по дням.
+
+---
+
+## Инструкция по запуску
+
+### 1. Установите необходимые зависимости
+
+```bash
+    npm install
 ```
 
-### Compile and Hot-Reload for Development
+### 2. Создайте и настройте .env файл
 
-```sh
-npm run dev
+Скопируйте пример и подставьте ID своего приложения с [Open Exchange Rates](https://openexchangerates.org/):
+
+```bash
+   cp .env.example .env
 ```
 
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
+Пример содержимого .env:
+```
+VITE_APP_OPEN_EXCHANGE_APP_ID=your_app_id_here
+VITE_API_BASE_URL=https://openexchangerates.org/api/
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+### 3. Запустите локальный сервер с приложением
 
-```sh
-npm run lint
+production-сервер ***(http://localhost:4173)***
+
+```bash
+    npm run preview
 ```
+
+или dev-сервер ***(http://localhost:5173)***
+
+```bash
+    npm run dev
+```
+
